@@ -1,0 +1,4 @@
+# .vercelignore - Prevent Vercel from picking up local server code
+local-server.js
+.vercelignore
+.git

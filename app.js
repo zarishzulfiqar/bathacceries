@@ -1599,14 +1599,6 @@ function setupTestimonialNav() {
   });
 }
 
-// Close Secure checkout dialog
-function closeCheckoutModal(push = true) {
-  const backdrop = document.getElementById('checkout-modal-backdrop');
-  if (backdrop) backdrop.classList.remove('active');
-  if (push && !isPopStateTriggered && window.location.hash === '#checkout') {
-    history.pushState({ view: 'home' }, '', '#');
-  }
-}
 
 // --- HISTORY STATE POPSTATE ROUTER ---
 window.addEventListener('popstate', (event) => {
