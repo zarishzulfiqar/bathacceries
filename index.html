@@ -26,15 +26,6 @@
         <span class="logo-sub">Lahore</span>
       </a>
 
-      <!-- History Navigation Controls (Back/Forward) -->
-      <div class="history-nav" style="display: flex; gap: 10px; margin-left: 20px;">
-        <button id="nav-back-btn" class="action-btn" aria-label="Go back" style="border: 1px solid rgba(255,255,255,0.2); border-radius: 50%; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center;">
-          <i data-lucide="arrow-left" style="width: 16px; height: 16px;"></i>
-        </button>
-        <button id="nav-forward-btn" class="action-btn" aria-label="Go forward" style="border: 1px solid rgba(255,255,255,0.2); border-radius: 50%; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center;">
-          <i data-lucide="arrow-right" style="width: 16px; height: 16px;"></i>
-        </button>
-      </div>
 
       <!-- Navigation Links -->
       <nav class="nav-menu">
@@ -125,13 +116,6 @@
       <!-- Slider Controls -->
       <button class="slider-control slider-prev" id="slider-prev-btn"><i data-lucide="chevron-left"></i></button>
       <button class="slider-control slider-next" id="slider-next-btn"><i data-lucide="chevron-right"></i></button>
-
-      <!-- Slider Dots -->
-      <div class="slider-dots" id="slider-dots-container">
-        <span class="slider-dot active" data-index="0"></span>
-        <span class="slider-dot" data-index="1"></span>
-        <span class="slider-dot" data-index="2"></span>
-      </div>
     </div>
   </section>
 
@@ -282,7 +266,7 @@
   </section>
 
   <!-- Footer Section -->
-  <footer>
+  <footer id="footer">
     <div class="container">
       <div class="footer-top">
         <!-- Column 1: Brand Info -->
@@ -707,6 +691,28 @@
 
       </main>
     </div>
+  </div>
+
+  <!-- Floating Section Sidebar Navigator -->
+  <div class="floating-scroll-nav">
+    <a href="#home" class="scroll-nav-dot active" data-section="home">
+      <span class="dot-label">Home</span>
+    </a>
+    <a href="#why-section" class="scroll-nav-dot" data-section="why-section">
+      <span class="dot-label">Why Us</span>
+    </a>
+    <a href="#categories-section" class="scroll-nav-dot" data-section="categories-section">
+      <span class="dot-label">Collections</span>
+    </a>
+    <a href="#shop-section" class="scroll-nav-dot" data-section="shop-section">
+      <span class="dot-label">Shop Catalog</span>
+    </a>
+    <a href="#reviews-section" class="scroll-nav-dot" data-section="reviews-section">
+      <span class="dot-label">Reviews</span>
+    </a>
+    <a href="#footer" class="scroll-nav-dot" data-section="footer">
+      <span class="dot-label">Showroom</span>
+    </a>
   </div>
 
   <!-- Custom JS Application Logic -->

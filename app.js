@@ -95,6 +95,7 @@ function initApp() {
   // Setup Event Listeners
   setupEventListeners();
   setupHeroSlider();
+  setupScrollSpy();
 
   // Initialize browser history state routing
   if (!history.state) {
@@ -1456,14 +1457,6 @@ function setupEventListeners() {
     updateThemeIcon();
   });
 
-  // History visual navigation buttons
-  document.getElementById('nav-back-btn').addEventListener('click', () => {
-    history.back();
-  });
-  document.getElementById('nav-forward-btn').addEventListener('click', () => {
-    history.forward();
-  });
-
   // Database Export Button click
   document.getElementById('export-database-btn').addEventListener('click', () => {
     const dbContent = `// data.js - Custom Database Exported on ${new Date().toLocaleDateString()}\n\n` +
@@ -1503,10 +1496,8 @@ function updateThemeIcon() {
 // --- HERO SLIDER NAVIGATION CONTROLLER ---
 function setupHeroSlider() {
   const slides = document.querySelectorAll('.slide');
-  const dots = document.querySelectorAll('.slider-dot');
   const prevBtn = document.getElementById('slider-prev-btn');
   const nextBtn = document.getElementById('slider-next-btn');
-  const dotsContainer = document.getElementById('slider-dots-container');
   
   if (slides.length === 0) return;
   
@@ -1519,14 +1510,6 @@ function setupHeroSlider() {
         slide.classList.add('active');
       } else {
         slide.classList.remove('active');
-      }
-    });
-    
-    dots.forEach((dot, index) => {
-      if (index === currentSlide) {
-        dot.classList.add('active');
-      } else {
-        dot.classList.remove('active');
       }
     });
   }
@@ -1559,16 +1542,6 @@ function setupHeroSlider() {
       resetInterval();
     });
   }
-  
-  if (dotsContainer) {
-    dotsContainer.addEventListener('click', (e) => {
-      if (e.target.classList.contains('slider-dot')) {
-        currentSlide = parseInt(e.target.getAttribute('data-index'), 10);
-        updateSlides();
-        resetInterval();
-      }
-    });
-  }
 }
 
 // --- TESTIMONIAL REVIEWS SLIDER CONTROLLER ---
@@ -1597,6 +1570,50 @@ function setupTestimonialNav() {
     index = (index + 1) % totalSlides;
     updateCarousel();
   });
+}
+
+
+// --- SCROLLSPY SIDEBAR CONTROLLER ---
+function setupScrollSpy() {
+  const dots = document.querySelectorAll('.scroll-nav-dot');
+  const sections = ['home', 'why-section', 'categories-section', 'shop-section', 'reviews-section', 'footer'];
+  
+  function handleScrollSpy() {
+    const scrollPos = window.scrollY + 250; // offset for triggering highlight
+    
+    sections.forEach(id => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      
+      const top = el.offsetTop;
+      const height = el.offsetHeight;
+      
+      if (scrollPos >= top && scrollPos < top + height) {
+        dots.forEach(dot => {
+          if (dot.getAttribute('data-section') === id) {
+            dot.classList.add('active');
+          } else {
+            dot.classList.remove('active');
+          }
+        });
+      }
+    });
+  }
+
+  // Smooth scroll to sections when dots are clicked
+  dots.forEach(dot => {
+    dot.addEventListener('click', (e) => {
+      e.preventDefault();
+      const targetId = dot.getAttribute('data-section');
+      const targetEl = document.getElementById(targetId);
+      if (targetEl) {
+        targetEl.scrollIntoView({ behavior: 'smooth' });
+      }
+    });
+  });
+
+  window.addEventListener('scroll', handleScrollSpy);
+  handleScrollSpy(); // run once on load
 }
 
 
